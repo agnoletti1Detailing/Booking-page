@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061321">
+
+  <title>Agnoletti Detailing | Book Now</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #061321;
+      --card: #0d253b;
+      --card-hover: #12324d;
+      --blue: #2498ff;
+      --blue-light: #7dc7ff;
+      --white: #ffffff;
+      --muted: #9fb2c4;
+      --border: rgba(255,255,255,0.10);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #0c2942 0%, #061321 48%, #030b13 100%);
+      color: var(--white);
+      min-height: 100vh;
+      padding: 25px 16px 60px;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* LOGO */
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      width: min(330px, 88vw);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 18px;
+    }
+
+    .booking-heading {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .booking-heading h1 {
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.8px;
+    }
+
+    .booking-heading p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* PROGRESS */
+
+    .progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .progress-dot {
+      width: 30px;
+      height: 6px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.14);
+      transition: 0.25s ease;
+    }
+
+    .progress-dot.active {
+      background: var(--blue);
+    }
+
+    /* CARD */
+
+    .card {
+      background: rgba(13, 37, 59, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      backdrop-filter: blur(12px);
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .step-title {
+      font-size: 23px;
+      margin-bottom: 7px;
+    }
+
+    .step-description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    /* SERVICES */
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-option {
+      width: 100%;
+      text-align: left;
+      color: var(--white);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 17px;
+      transition: 0.2s ease;
+    }
+
+    .service-option:hover {
+      background: var(--card-hover);
+      border-color: rgba(36,152,255,0.55);
+    }
+
+    .service-option.selected {
+      border-color: var(--blue);
+      background: rgba(36,152,255,0.12);
+      box-shadow: 0 0 0 1px rgba(36,152,255,0.25);
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .service-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .service-price {
+      font-weight: 700;
+      color: var(--blue-light);
+      white-space: nowrap;
+    }
+
+    .service-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 7px;
+      line-height: 1.4;
+    }
+
+    .signature-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 20px;
+      background: rgba(36,152,255,0.15);
+      color: var(--blue-light);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .old-price {
+      color: #718394;
+      text-decoration: line-through;
+      margin-right: 6px;
+      font-weight: 400;
+    }
+
+    /* INPUTS */
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      color: var(--white);
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 14px;
+      outline: none;
+      transition: 0.2s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(36,152,255,0.10);
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr 1.2fr;
+      gap: 10px;
+    }
+
+    /* NEEDS */
+
+    .needs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .need-option {
+      position: relative;
+    }
+
+    .need-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .need-option label {
+      display: block;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      color: #d9e5ee;
+      background: rgba(255,255,255,0.025);
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .need-option input:checked + label {
+      border-color: var(--blue);
+      background: rgba(36,152,255,0.12);
+      color: var(--white);
+    }
+
+    /* CONTACT */
+
+    .contact-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-option {
+      width: 100%;
+      text-align: left;
+      color: var(--white);
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 15px;
+      transition: 0.2s ease;
+    }
+
+    .contact-option:hover {
+      background: var(--card-hover);
+    }
+
+    .contact-option.selected {
+      border-color: var(--blue);
+      background: rgba(36,152,255,0.12);
+    }
+
+    .contact-option strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-option span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .call-note {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 11px;
+      background: rgba(36,152,255,0.08);
+      color: #b9dfff;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .call-note.show {
+      display: block;
+    }
+
+    /* BUTTONS */
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 15px 18px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      flex: 1;
+      color: white;
+      background: linear-gradient(135deg, #2498ff, #1672c7);
+      box-shadow: 0 8px 25px rgba(36,152,255,0.20);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* SUMMARY */
+
+    .summary {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: var(--muted);
+    }
+
+    .summary-value {
+      text-align: right;
+      font-weight: 700;
+    }
+
+    /* ERROR */
+
+    .error-message {
+      display: none;
+      color: #ff9c9c;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* SUCCESS */
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 15px 0 5px;
+    }
+
+    .success.active {
+      display: block;
+    }
+
+    .success-icon {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(36,152,255,0.13);
+      color: var(--blue-light);
+      font-size: 28px;
+    }
+
+    .success h2 {
+      margin-bottom: 9px;
+    }
+
+    .success p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      color: #718394;
+      font-size: 12px;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 520px) {
+
+      body {
+        padding: 18px 12px 45px;
+      }
+
+      .card {
+        padding: 20px 17px;
+        border-radius: 18px;
+      }
+
+      .booking-heading h1 {
+        font-size: 27px;
+      }
+
+      .vehicle-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .needs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-row {
+        flex-direction: column-reverse;
+      }
+
+      .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <!-- YOUR ACTUAL UPLOADED LOGO -->
+  <div class="logo-area">
+    <img
+      src="B29923CD-B9AC-47AC-B75B-8CA7680336D8(2).jpeg"
+      alt="Agnoletti Detailing - Livermore, CA"
+      class="logo"
+    >
+  </div>
+
+  <div class="booking-heading">
+    <h1>Book Your Detail</h1>
+    <p>
+      Tell us a little about your vehicle and we'll get you taken care of.
+    </p>
+  </div>
+
+  <div class="progress">
+    <div class="progress-dot active" id="progress1"></div>
+    <div class="progress-dot" id="progress2"></div>
+    <div class="progress-dot" id="progress3"></div>
+    <div class="progress-dot" id="progress4"></div>
+  </div>
+
+  <div class="card">
+
+    <!-- STEP 1 -->
+
+    <section class="step active" id="step1">
+
+      <h2 class="step-title">Choose your service</h2>
+
+      <p class="step-description">
+        Select the service that best fits what your vehicle needs.
+      </p>
+
+      <div class="service-list">
+
+        <button type="button"
+          class="service-option"
+          data-service="Full Detail"
+          data-price="149">
+
+          <div class="service-top">
+            <span class="service-name">Full Detail</span>
+            <span class="service-price">$149</span>
+          </div>
+
+          <div class="service-description">
+            Complete interior and exterior detail.
+          </div>
+
+        </button>
+
+
+        <button type="button"
+          class="service-option"
+          data-service="Interior Detail"
+          data-price="120">
+
+          <div class="service-top">
+            <span class="service-name">Interior Detail</span>
+            <span class="service-price">$120</span>
+          </div>
+
+          <div class="service-description">
+            Deep interior cleaning and reset.
+          </div>
+
+        </button>
+
+
+        <button type="button"
+          class="service-option"
+          data-service="Exterior Detail"
+          data-price="50">
+
+          <div class="service-top">
+            <span class="service-name">Exterior Detail</span>
+            <span class="service-price">$50</span>
+          </div>
+
+          <div class="service-description">
+            Thorough exterior wash and finish.
+          </div>
+
+        </button>
+
+
+        <button type="button"
+          class="service-option"
+          data-service="Agnoletti Signature"
+          data-price="220">
+
+          <div class="service-top">
+            <span class="service-name">Agnoletti Signature</span>
+
+            <span class="service-price">
+              <span class="old-price">$270</span>
+              $220
+            </span>
+          </div>
+
+          <div class="service-description">
+            Our premium signature service.
+          </div>
+
+          <span class="signature-badge">
+            SAVE $50
+          </span>
+
+        </button>
+
+
+        <button type="button"
+          class="service-option"
+          data-service="Not Sure"
+          data-price="Quote">
+
+          <div class="service-top">
+            <span class="service-name">Not sure?</span>
+            <span class="service-price">We'll help</span>
+          </div>
+
+          <div class="service-description">
+            Tell us what your vehicle needs and we'll recommend the right service.
+          </div>
+
+        </button>
+
+      </div>
+
+      <div class="error-message" id="serviceError">
+        Please select a service to continue.
+      </div>
+
+      <div class="button-row">
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="continue1">
+          CONTINUE →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 2 -->
+
+    <section class="step" id="step2">
+
+      <h2 class="step-title">Tell us about your vehicle</h2>
+
+      <p class="step-description">
+        This helps us understand what your vehicle needs before we contact you.
+      </p>
+
+      <div class="vehicle-grid">
+
+        <div class="field">
+          <label for="year">Year</label>
+          <input
+            type="text"
+            id="year"
+            placeholder="2020"
+            inputmode="numeric">
+        </div>
+
+        <div class="field">
+          <label for="make">Make</label>
+          <input
+            type="text"
+            id="make"
+            placeholder="Toyota">
+        </div>
+
+        <div class="field">
+          <label for="model">Model</label>
+          <input
+            type="text"
+            id="model"
+            placeholder="Camry">
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>What does your vehicle need?</label>
+
+        <div class="needs-grid">
+
+          <div class="need-option">
+            <input type="checkbox" id="petHair" value="Pet hair">
+            <label for="petHair">Pet hair</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="dirtMud" value="Dirt / mud">
+            <label for="dirtMud">Dirt / mud</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="stains" value="Stains">
+            <label for="stains">Stains</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="spills" value="Spills">
+            <label for="spills">Spills</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="odor" value="Odor">
+            <label for="odor">Odor</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="buildup" value="Interior buildup">
+            <label for="buildup">Interior buildup</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="refresh" value="Just needs a refresh">
+            <label for="refresh">Just needs a refresh</label>
+          </div>
+
+          <div class="need-option">
+            <input type="checkbox" id="otherNeed" value="Other">
+            <label for="otherNeed">Other</label>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="concern">
+          Anything specific we should know?
+          <span style="color:#718394;">(optional)</span>
+        </label>
+
+        <textarea
+          id="concern"
+          placeholder="Example: Dog hair in the back seats..."></textarea>
+
+      </div>
+
+
+      <div class="button-row">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="back2">
+          ← BACK
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="continue2">
+          CONTINUE →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 3 -->
+
+    <section class="step" id="step3">
+
+      <h2 class="step-title">Schedule & contact</h2>
+
+      <p class="step-description">
+        Pick a preferred day and tell us how you'd like us to reach you.
+      </p>
+
+      <div class="field">
+
+        <label for="preferredDate">
+          Preferred day
+        </label>
+
+        <input
+          type="date"
+          id="preferredDate">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          How would you like us to reach you?
+        </label>
+
+        <div class="contact-options">
+
+          <button
+            type="button"
+            class="contact-option"
+            data-contact="Call">
+
+            <strong>📞 Give me a call</strong>
+
+            <span>
+              We'll give you a quick call to confirm the details.
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="contact-option"
+            data-contact="Text">
+
+            <strong>💬 Text me</strong>
+
+            <span>
+              We'll text you to confirm your appointment.
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <div class="call-note" id="callNote">
+          If you choose a call, we'll reach out for a quick
+          10–20 minute conversation to confirm your vehicle and appointment.
+        </div>
+
+      </div>
+
+
+      <div class="error-message" id="contactError">
+        Please choose how you'd like us to contact you.
+      </div>
+
+
+      <div class="button-row">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="back3">
+          ← BACK
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="continue3">
+          CONTINUE →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 4 -->
+
+    <section class="step" id="step4">
+
+      <h2 class="step-title">Almost there</h2>
+
+      <p class="step-description">
+        Enter your contact information and review your booking request.
+      </p>
+
+
+      <div class="field">
+
+        <label for="name">
+          Name
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name"
+          autocomplete="name">
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="phone">
+          Phone number
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="(555) 555-5555"
+          autocomplete="tel">
+
+      </div>
+
+
+      <div class="summary">
+
+        <div class="summary-row">
+          <span class="summary-label">Service</span>
+          <span class="summary-value" id="summaryService">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Vehicle</span>
+          <span class="summary-value" id="summaryVehicle">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Preferred day</span>
+          <span class="summary-value" id="summaryDate">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Contact</span>
+          <span class="summary-value" id="summaryContact">—</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Estimated price</span>
+          <span class="summary-value" id="summaryPrice">—</span>
+        </div>
+
+      </div>
+
+
+      <div class="error-message" id="finalError">
+        Please enter your name and phone number.
+      </div>
+
+
+      <div class="button-row">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="back4">
+          ← BACK
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="sendBooking">
+          SEND BOOKING →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SUCCESS -->
+
+    <section class="success" id="success">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>Booking request ready!</h2>
+
+      <p>
+        Your text message should open automatically.
+        Tap <strong>Send</strong> and we'll get back to you to confirm your appointment.
+      </p>
+
+    </section>
+
+  </div>
+
+
+  <div class="footer">
+    Agnoletti Detailing · Livermore, CA<br>
+    Pricing may vary based on vehicle size, condition, and specialized work required.
+  </div>
+
+</main>
+
+
+<script>
+
+  const BUSINESS_PHONE = "14088290653";
+
+  let currentStep = 1;
+  let selectedService = "";
+  let selectedPrice = "";
+  let selectedContact = "";
+
+
+  const steps = {
+    1: document.getElementById("step1"),
+    2: document.getElementById("step2"),
+    3: document.getElementById("step3"),
+    4: document.getElementById("step4")
+  };
+
+
+  const progress = {
+    1: document.getElementById("progress1"),
+    2: document.getElementById("progress2"),
+    3: document.getElementById("progress3"),
+    4: document.getElementById("progress4")
+  };
+
+
+  function showStep(number) {
+
+    currentStep = number;
+
+    Object.values(steps).forEach(function(step) {
+      step.classList.remove("active");
+    });
+
+    steps[number].classList.add("active");
+
+
+    Object.values(progress).forEach(function(dot) {
+      dot.classList.remove("active");
+    });
+
+    for (let i = 1; i <= number; i++) {
+      progress[i].classList.add("active");
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  /* SERVICE SELECTION */
+
+  document.querySelectorAll(".service-option").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+      document.querySelectorAll(".service-option").forEach(function(option) {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+
+      selectedService = button.dataset.service;
+      selectedPrice = button.dataset.price;
+
+      document
+        .getElementById("serviceError")
+        .classList.remove("show");
+
+    });
+
+  });
+
+
+  /* CONTACT SELECTION */
+
+  document.querySelectorAll(".contact-option").forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+      document.querySelectorAll(".contact-option").forEach(function(option) {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+
+      selectedContact = button.dataset.contact;
+
+      document
+        .getElementById("contactError")
+        .classList.remove("show");
+
+
+      const callNote = document.getElementById("callNote");
+
+      if (selectedContact === "Call") {
+        callNote.classList.add("show");
+      } else {
+        callNote.classList.remove("show");
+      }
+
+    });
+
+  });
+
+
+  /* STEP 1 */
+
+  document
+    .getElementById("continue1")
+    .addEventListener("click", function() {
+
+      if (!selectedService) {
+
+        document
+          .getElementById("serviceError")
+          .classList.add("show");
+
+        return;
+      }
+
+      showStep(2);
+
+    });
+
+
+  /* STEP 2 */
+
+  document
+    .getElementById("continue2")
+    .addEventListener("click", function() {
+
+      showStep(3);
+
+    });
+
+
+  /* STEP 3 */
+
+  document
+    .getElementById("continue3")
+    .addEventListener("click", function() {
+
+      if (!selectedContact) {
+
+        document
+          .getElementById("contactError")
+          .classList.add("show");
+
+        return;
+      }
+
+      updateSummary();
+
+      showStep(4);
+
+    });
+
+
+  /* BACK */
+
+  document
+    .getElementById("back2")
+    .addEventListener("click", function() {
+      showStep(1);
+    });
+
+
+  document
+    .getElementById("back3")
+    .addEventListener("click", function() {
+      showStep(2);
+    });
+
+
+  document
+    .getElementById("back4")
+    .addEventListener("click", function() {
+      showStep(3);
+    });
+
+
+  /* SUMMARY */
+
+  function updateSummary() {
+
+    const year =
+      document.getElementById("year").value.trim();
+
+    const make =
+      document.getElementById("make").value.trim();
+
+    const model =
+      document.getElementById("model").value.trim();
+
+
+    const vehicle =
+      [year, make, model]
+        .filter(Boolean)
+        .join(" ") || "Not provided";
+
+
+    const date =
+      document.getElementById("preferredDate").value;
+
+
+    let formattedDate = "Flexible";
+
+
+    if (date) {
+
+      const dateObject =
+        new Date(date + "T00:00:00");
+
+      formattedDate =
+        dateObject.toLocaleDateString(
+          "en-US",
+          {
+            weekday: "long",
+            month: "long",
+            day: "numeric"
+          }
+        );
+
+    }
+
+
+    document.getElementById("summaryService").textContent =
+      selectedService || "—";
+
+    document.getElementById("summaryVehicle").textContent =
+      vehicle;
+
+    document.getElementById("summaryDate").textContent =
+      formattedDate;
+
+    document.getElementById("summaryContact").textContent =
+      selectedContact || "—";
+
+    document.getElementById("summaryPrice").textContent =
+      selectedPrice === "Quote"
+        ? "Quote"
+        : "$" + selectedPrice;
+
+  }
+
+
+  /* SEND BOOKING */
+
+  document
+    .getElementById("sendBooking")
+    .addEventListener("click", function() {
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const phone =
+        document.getElementById("phone").value.trim();
+
+      const year =
+        document.getElementById("year").value.trim();
+
+      const make =
+        document.getElementById("make").value.trim();
+
+      const model =
+        document.getElementById("model").value.trim();
+
+      const preferredDate =
+        document.getElementById("preferredDate").value;
+
+      const concern =
+        document.getElementById("concern").value.trim();
+
+
+      const finalError =
+        document.getElementById("finalError");
+
+
+      if (!name || !phone) {
+
+        finalError.textContent =
+          "Please enter your name and phone number.";
+
+        finalError.classList.add("show");
+
+        return;
+      }
+
+
+      finalError.classList.remove("show");
+
+
+      /* NEEDS */
+
+      const selectedNeeds = [];
+
+      document
+        .querySelectorAll(".need-option input:checked")
+        .forEach(function(input) {
+
+          selectedNeeds.push(input.value);
+
+        });
+
+
+      /* VEHICLE */
+
+      const vehicle =
+        [year, make, model]
+          .filter(Boolean)
+          .join(" ") || "Not provided";
+
+
+      /* DATE */
+
+      let dateText = "Flexible";
+
+
+      if (preferredDate) {
+
+        const dateObject =
+          new Date(preferredDate + "T00:00:00");
+
+        dateText =
+          dateObject.toLocaleDateString(
+            "en-US",
+            {
+              weekday: "long",
+              month: "long",
+              day: "numeric"
+            }
+          );
+
+      }
+
+
+      /* SMS MESSAGE */
+
+      let message = "";
+
+      message += "NEW AGNOLETTI DETAILING BOOKING\n\n";
+
+      message += "Name: " + name + "\n";
+      message += "Phone: " + phone + "\n\n";
+
+      message += "Service: " + selectedService + "\n";
+
+      message += "Price: " +
+        (
+          selectedPrice === "Quote"
+            ? "Quote"
+            : "$" + selectedPrice
+        ) +
+        "\n\n";
+
+      message += "Vehicle: " + vehicle + "\n";
+
+      message += "Preferred day: " + dateText + "\n";
+
+      message +=
+        "Contact preference: " +
+        selectedContact +
+        "\n";
+
+
+      if (selectedNeeds.length > 0) {
+
+        message +=
+          "\nVehicle needs: " +
+          selectedNeeds.join(", ") +
+          "\n";
+
+      }
+
+
+      if (concern) {
+
+        message +=
+          "\nAdditional details: " +
+          concern +
+          "\n";
+
+      }
+
+
+      message +=
+        "\nSent from Agnoletti Detailing booking page.";
+
+
+      /* OPEN SMS */
+
+      const smsURL =
+        "sms:" +
+        BUSINESS_PHONE +
+        "?body=" +
+        encodeURIComponent(message);
+
+
+      window.location.href = smsURL;
+
+
+      setTimeout(function() {
+
+        document
+          .querySelectorAll(".step")
+          .forEach(function(step) {
+            step.classList.remove("active");
+          });
+
+        document
+          .getElementById("success")
+          .classList.add("active");
+
+        document
+          .querySelector(".progress")
+          .style.display = "none";
+
+      }, 500);
+
+    });
+
+
+  /* TODAY AS MINIMUM DATE */
+
+  const today =
+    new Date().toISOString().split("T")[0];
+
+  document
+    .getElementById("preferredDate")
+    .setAttribute("min", today);
