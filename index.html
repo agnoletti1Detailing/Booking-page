@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Agnoletti Detailing | Livermore, CA</title>
+
+  <meta
+    name="description"
+    content="Book a professional vehicle detail with Agnoletti Detailing in Livermore, California."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050b14;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 30px 16px 60px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* =========================
+       LOGO
+    ========================= */
+
+    .logo-area {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      display: block;
+      width: min(330px, 85vw);
+      max-height: 130px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .logo-fallback {
+      display: none;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .location {
+      margin-top: 10px;
+      color: #8fa4bb;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      font-size: clamp(30px, 7vw, 52px);
+      line-height: 1;
+      margin-bottom: 12px;
+      font-weight: 900;
+    }
+
+    .header p {
+      color: #aab8c8;
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       BOOKING CARD
+    ========================= */
+
+    .booking-card {
+      background: #0b1421;
+      border: 1px solid #1d3045;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    .progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .progress-dot {
+      width: 32px;
+      height: 6px;
+      border-radius: 20px;
+      background: #25384d;
+      transition: 0.2s;
+    }
+
+    .progress-dot.active {
+      background: #ffffff;
+    }
+
+    /* =========================
+       STEPS
+    ========================= */
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .step-title {
+      font-size: 25px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .step-subtitle {
+      color: #8fa4bb;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       SERVICE OPTIONS
+    ========================= */
+
+    .service-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-button {
+      width: 100%;
+      background: #0e1b2b;
+      border: 1px solid #263c54;
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+      transition: 0.15s ease;
+    }
+
+    .service-button:hover {
+      border-color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .service-button.selected {
+      border: 2px solid #ffffff;
+      background: #142438;
+    }
+
+    .service-name {
+      display: block;
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .service-price {
+      color: #aebdcd;
+      font-size: 14px;
+    }
+
+    .service-price .old {
+      text-decoration: line-through;
+      color: #66778a;
+      margin-right: 5px;
+    }
+
+    /* =========================
+       INPUTS
+    ========================= */
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #dce5ee;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    textarea {
+      width: 100%;
+      border: 1px solid #2a4057;
+      background: #08111d;
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 14px;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+      border-color: #ffffff;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .vehicle-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    /* =========================
+       CHECKBOXES
+    ========================= */
+
+    .needs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .check-option {
+      position: relative;
+    }
+
+    .check-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .check-option label {
+      display: block;
+      padding: 13px;
+      border-radius: 11px;
+      border: 1px solid #263c54;
+      background: #0e1b2b;
+      color: #dbe5ef;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1.25;
+      transition: 0.15s;
+    }
+
+    .check-option input:checked + label {
+      background: #172b40;
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    /* =========================
+       CONTACT OPTIONS
+    ========================= */
+
+    .contact-options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-button {
+      width: 100%;
+      padding: 17px;
+      border-radius: 13px;
+      border: 1px solid #263c54;
+      background: #0e1b2b;
+      color: #ffffff;
+      text-align: left;
+      transition: 0.15s;
+    }
+
+    .contact-button.selected {
+      border: 2px solid #ffffff;
+      background: #142438;
+    }
+
+    .contact-button strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-button span {
+      color: #93a7ba;
+      font-size: 13px;
+    }
+
+    .call-question {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #101f31;
+      border: 1px solid #263c54;
+    }
+
+    .call-question.show {
+      display: block;
+    }
+
+    .call-question p {
+      font-size: 14px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .call-answer {
+      display: flex;
+      gap: 10px;
+    }
+
+    .call-answer button {
+      flex: 1;
+      border: 1px solid #31465d;
+      background: #09131f;
+      color: #ffffff;
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .call-answer button.selected {
+      border-color: #ffffff;
+      background: #172b40;
+    }
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    .summary {
+      background: #08111d;
+      border: 1px solid #24394f;
+      border-radius: 14px;
+      padding: 17px;
+      margin-top: 20px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 9px 0;
+      border-bottom: 1px solid #18293b;
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: #8498ad;
+      font-size: 13px;
+    }
+
+    .summary-value {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 700;
+      max-width: 65%;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .navigation {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .nav-button {
+      flex: 1;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-weight: 800;
+      transition: 0.15s;
+    }
+
+    .back-button {
+      background: #172535;
+      color: #ffffff;
+    }
+
+    .next-button,
+    .send-button {
+      background: #ffffff;
+      color: #050b14;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-message {
+      display: none;
+      color: #ffb4b4;
+      background: #301919;
+      border: 1px solid #713636;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* =========================
+       SUCCESS
+    ========================= */
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .success.active {
+      display: block;
+    }
+
+    .success-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #050b14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .success h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .success p {
+      color: #aab8c8;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       DISCLAIMER
+    ========================= */
+
+    .fine-print {
+      color: #687d92;
+      font-size: 11px;
+      line-height: 1.5;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 560px) {
+      .page {
+        padding: 20px 12px 45px;
+      }
+
+      .booking-card {
+        padding: 17px;
+        border-radius: 16px;
+      }
+
+      .needs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .navigation {
+        flex-direction: column-reverse;
+      }
+
+      .back-button {
+        order: 2;
+      }
+
+      .next-button,
+      .send-button {
+        order: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="container">
+
+      <!-- LOGO -->
+      <div class="logo-area">
+
+        <img
+          id="businessLogo"
+          class="logo"
+          src="./logo.jpeg"
+          alt="Agnoletti Detailing"
+          onerror="logoFailed()"
+        >
+
+        <div id="logoFallback" class="logo-fallback">
+          Agnoletti Detailing
+        </div>
+
+        <div class="location">
+          LIVERMORE, CALIFORNIA
+        </div>
+
+      </div>
+
+      <!-- HEADER -->
+      <div class="header">
+        <h1>Book Your Detail</h1>
+
+        <p>
+          Tell us a little about your vehicle and what it needs.
+          We'll get back to you to confirm your appointment.
+        </p>
+      </div>
+
+      <!-- BOOKING CARD -->
+      <section class="booking-card">
+
+        <!-- PROGRESS -->
+        <div class="progress">
+          <div id="progress1" class="progress-dot active"></div>
+          <div id="progress2" class="progress-dot"></div>
+          <div id="progress3" class="progress-dot"></div>
+          <div id="progress4" class="progress-dot"></div>
+        </div>
+
+
+        <!-- =========================
+             STEP 1
+        ========================== -->
+
+        <div id="step1" class="step active">
+
+          <h2 class="step-title">
+            What service do you need?
+          </h2>
+
+          <p class="step-subtitle">
+            Choose the service that best matches what you're looking for.
+          </p>
+
+          <div class="service-list">
+
+            <button
+              type="button"
+              class="service-button"
+              data-service="Full Detail"
+              data-price="149"
+              onclick="selectService(this)"
+            >
+              <span class="service-name">
+                Full Detail
+              </span>
+
+              <span class="service-price">
+                $149
+              </span>
+            </button>
+
+
+            <button
+              type="button"
+              class="service-button"
+              data-service="Interior Detail"
+              data-price="120"
+              onclick="selectService(this)"
+            >
+              <span class="service-name">
+                Interior Detail
+              </span>
+
+              <span class="service-price">
+                $120
+              </span>
+            </button>
+
+
+            <button
+              type="button"
+              class="service-button"
+              data-service="Exterior Detail"
+              data-price="50"
+              onclick="selectService(this)"
+            >
+              <span class="service-name">
+                Exterior Detail
+              </span>
+
+              <span class="service-price">
+                $50
+              </span>
+            </button>
+
+
+            <button
+              type="button"
+              class="service-button"
+              data-service="Agnoletti Signature"
+              data-price="220"
+              onclick="selectService(this)"
+            >
+              <span class="service-name">
+                Agnoletti Signature
+              </span>
+
+              <span class="service-price">
+                <span class="old">$270</span>
+                $220 — Save $50
+              </span>
+            </button>
+
+
+            <button
+              type="button"
+              class="service-button"
+              data-service="Not sure — help me choose"
+              data-price="0"
+              onclick="selectService(this)"
+            >
+              <span class="service-name">
+                Not sure?
+              </span>
+
+              <span class="service-price">
+                Help me choose the right service
+              </span>
+            </button>
+
+          </div>
+
+          <div id="error1" class="error-message">
+            Please select a service before continuing.
+          </div>
+
+          <div class="navigation">
+
+            <button
+              type="button"
+              class="nav-button next-button"
+              onclick="nextStep()"
+            >
+              NEXT →
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             STEP 2
+        ========================== -->
+
+        <div id="step2" class="step">
+
+          <h2 class="step-title">
+            Tell us about your vehicle
+          </h2>
+
+          <p class="step-subtitle">
+            This helps us understand the vehicle before confirming your appointment.
+          </p>
+
+
+          <div class="vehicle-grid">
+
+            <div class="field">
+
+              <label for="year">
+                Year
+              </label>
+
+              <input
+                id="year"
+                type="text"
+                inputmode="numeric"
+                placeholder="2021"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="make">
+                Make
+              </label>
+
+              <input
+                id="make"
+                type="text"
+                placeholder="Toyota"
+              >
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="model">
+                Model
+              </label>
+
+              <input
+                id="model"
+                type="text"
+                placeholder="4Runner"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              What does your vehicle need?
+            </label>
+
+
+            <div class="needs-grid">
+
+              <div class="check-option">
+                <input id="needPet" type="checkbox" value="Pet hair">
+                <label for="needPet">Pet hair</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needDirt" type="checkbox" value="Dirt / mud">
+                <label for="needDirt">Dirt / mud</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needStains" type="checkbox" value="Stains">
+                <label for="needStains">Stains</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needSpills" type="checkbox" value="Spills">
+                <label for="needSpills">Spills</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needOdor" type="checkbox" value="Odor">
+                <label for="needOdor">Odor</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needBuildup" type="checkbox" value="Interior buildup">
+                <label for="needBuildup">Interior buildup</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needRefresh" type="checkbox" value="Just needs a refresh">
+                <label for="needRefresh">Just needs a refresh</label>
+              </div>
+
+              <div class="check-option">
+                <input id="needOther" type="checkbox" value="Other">
+                <label for="needOther">Other</label>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="concern">
+              Anything specific we should know?
+              <span style="color:#687d92;">(optional)</span>
+            </label>
+
+            <textarea
+              id="concern"
+              placeholder="Example: Dog hair in the back seats..."
+            ></textarea>
+
+          </div>
+
+
+          <div id="error2" class="error-message">
+            Please enter your vehicle year, make, and model.
+          </div>
+
+
+          <div class="navigation">
+
+            <button
+              type="button"
+              class="nav-button back-button"
+              onclick="previousStep()"
+            >
+              ← BACK
+            </button>
+
+            <button
+              type="button"
+              class="nav-button next-button"
+              onclick="nextStep()"
+            >
+              NEXT →
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             STEP 3
+        ========================== -->
+
+        <div id="step3" class="step">
+
+          <h2 class="step-title">
+            Scheduling & contact
+          </h2>
+
+          <p class="step-subtitle">
+            Choose your preferred day. We'll confirm the exact appointment time with you.
+          </p>
+
+
+          <div class="field">
+
+            <label for="preferredDate">
+              Preferred day
+            </label>
+
+            <input
+              id="preferredDate"
+              type="date"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              How would you like us to reach you?
+            </label>
+
+            <div class="contact-options">
+
+              <button
+                type="button"
+                id="contactCall"
+                class="contact-button"
+                onclick="selectContact('call')"
+              >
+                <strong>Give me a call</strong>
+                <span>We'll contact you by phone.</span>
+              </button>
+
+
+              <button
+                type="button"
+                id="contactText"
+                class="contact-button"
+                onclick="selectContact('text')"
+              >
+                <strong>Text me</strong>
+                <span>We'll contact you by text message.</span>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="callQuestion"
+            class="call-question"
+          >
+
+            <p>
+              Are you open to a quick call within the next 10–20 minutes?
+            </p>
+
+            <div class="call-answer">
+
+              <button
+                type="button"
+                id="callYes"
+                onclick="selectCallAnswer('yes')"
+              >
+                Yes
+              </button>
+
+              <button
+                type="button"
+                id="callNo"
+                onclick="selectCallAnswer('no')"
+              >
+                No
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div id="error3" class="error-message">
+            Please select a preferred day and contact method.
+          </div>
+
+
+          <div class="navigation">
+
+            <button
+              type="button"
+              class="nav-button back-button"
+              onclick="previousStep()"
+            >
+              ← BACK
+            </button>
+
+            <button
+              type="button"
+              class="nav-button next-button"
+              onclick="nextStep()"
+            >
+              NEXT →
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             STEP 4
+        ========================== -->
+
+        <div id="step4" class="step">
+
+          <h2 class="step-title">
+            Almost there
+          </h2>
+
+          <p class="step-subtitle">
+            Enter your information and we'll send your booking request directly to Agnoletti Detailing.
+          </p>
+
+
+          <div class="field">
+
+            <label for="customerName">
+              Name
+            </label>
+
+            <input
+              id="customerName"
+              type="text"
+              placeholder="Your name"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="customerPhone">
+              Phone number
+            </label>
+
+            <input
+              id="customerPhone"
+              type="tel"
+              inputmode="tel"
+              placeholder="(555) 555-5555"
+            >
+
+          </div>
+
+
+          <div class="summary">
+
+            <div class="summary-row">
+              <span class="summary-label">
+                Service
+              </span>
+
+              <span
+                id="summaryService"
+                class="summary-value"
+              >
+                —
+              </span>
+            </div>
+
+
+            <div class="summary-row">
+              <span class="summary-label">
+                Vehicle
+              </span>
+
+              <span
+                id="summaryVehicle"
+                class="summary-value"
+              >
+                —
+              </span>
+            </div>
+
+
+            <div class="summary-row">
+              <span class="summary-label">
+                Needs
+              </span>
+
+              <span
+                id="summaryNeeds"
+                class="summary-value"
+              >
+                —
+              </span>
+            </div>
+
+
+            <div class="summary-row">
+              <span class="summary-label">
+                Preferred day
+              </span>
+
+              <span
+                id="summaryDate"
+                class="summary-value"
+              >
+                —
+              </span>
+            </div>
+
+
+            <div class="summary-row">
+              <span class="summary-label">
+                Contact
+              </span>
+
+              <span
+                id="summaryContact"
+                class="summary-value"
+              >
+                —
+              </span>
+            </div>
+
+          </div>
+
+
+          <div id="error4" class="error-message">
+            Please enter your name and phone number.
+          </div>
+
+
+          <div class="navigation">
+
+            <button
+              type="button"
+              class="nav-button back-button"
+              onclick="previousStep()"
+            >
+              ← BACK
+            </button>
+
+            <button
+              type="button"
+              class="nav-button send-button"
+              onclick="sendBooking()"
+            >
+              SEND BOOKING →
+            </button>
+
+          </div>
+
+
+          <p class="fine-print">
+            Prices shown are starting prices and may vary depending on vehicle size,
+            condition, excessive buildup, or specialized work required.
+          </p>
+
+        </div>
+
+
+        <!-- =========================
+             SUCCESS
+        ========================== -->
+
+        <div
+          id="success"
+          class="success"
+        >
+
+          <div class="success-icon">
+            ✓
+          </div>
+
+          <h2>
+            Booking request ready
+          </h2>
+
+          <p>
+            Your text message should open automatically.
+            Tap <strong>Send</strong> to send your booking request.
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* =========================================
+       SETTINGS
+    ========================================= */
+
+    const BUSINESS_PHONE = "14088290653";
+
+    let currentStep = 1;
+
+    let selectedService = "";
+    let selectedPrice = "";
+
+    let selectedContact = "";
+
+    let callAnswer = "";
+
+
+    /* =========================================
+       LOGO FALLBACK
+    ========================================= */
+
+    function logoFailed() {
+
+      const logo = document.getElementById("businessLogo");
+      const fallback = document.getElementById("logoFallback");
+
+      logo.style.display = "none";
+      fallback.style.display = "block";
+
+    }
+
+
+    /* =========================================
+       SERVICE
+    ========================================= */
+
+    function selectService(button) {
+
+      const buttons = document.querySelectorAll(".service-button");
+
+      buttons.forEach(function(item) {
+        item.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+
+      selectedService = button.dataset.service;
+      selectedPrice = button.dataset.price;
+
+      hideError(1);
+    }
+
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+
+    function selectContact(type) {
+
+      selectedContact = type;
+
+      const callButton = document.getElementById("contactCall");
+      const textButton = document.getElementById("contactText");
+      const callQuestion = document.getElementById("callQuestion");
+
+      callButton.classList.remove("selected");
+      textButton.classList.remove("selected");
+
+      if (type === "call") {
+
+        callButton.classList.add("selected");
+        callQuestion.classList.add("show");
+
+      } else {
+
+        textButton.classList.add("selected");
+        callQuestion.classList.remove("show");
+
+        callAnswer = "";
+
+        document
+          .getElementById("callYes")
+          .classList.remove("selected");
+
+        document
+          .getElementById("callNo")
+          .classList.remove("selected");
+      }
+
+      hideError(3);
+    }
+
+
+    /* =========================================
+       CALL ANSWER
+    ========================================= */
+
+    function selectCallAnswer(answer) {
+
+      callAnswer = answer;
+
+      document
+        .getElementById("callYes")
+        .classList.remove("selected");
+
+      document
+        .getElementById("callNo")
+        .classList.remove("selected");
+
+      if (answer === "yes") {
+
+        document
+          .getElementById("callYes")
+          .classList.add("selected");
+
+      } else {
+
+        document
+          .getElementById("callNo")
+          .classList.add("selected");
+
+      }
+
+    }
+
+
+    /* =========================================
+       NEXT STEP
+    ========================================= */
+
+    function nextStep() {
+
+      if (currentStep === 1) {
+
+        if (!selectedService) {
+
+          showError(1);
+          return;
+
+        }
+
+      }
+
+
+      if (currentStep === 2) {
+
+        const year = document
+          .getElementById("year")
+          .value
+          .trim();
+
+        const make = document
+          .getElementById("make")
+          .value
+          .trim();
+
+        const model = document
+          .getElementById("model")
+          .value
+          .trim();
+
+        if (!year || !make || !model) {
+
+          showError(2);
+          return;
+
+        }
+
+      }
+
+
+      if (currentStep === 3) {
+
+        const date = document
+          .getElementById("preferredDate")
+          .value;
+
+        if (!date || !selectedContact) {
+
+          showError(3);
+          return;
+
+        }
+
+        if (selectedContact === "call" && !callAnswer) {
+
+          showError(3);
+          return;
+
+        }
+
+        updateSummary();
+
+      }
+
+
+      if (currentStep < 4) {
+
+        currentStep++;
+
+        updateStep();
+
+      }
+
+    }
+
+
+    /* =========================================
+       PREVIOUS STEP
+    ========================================= */
+
+    function previousStep() {
+
+      if (currentStep > 1) {
+
+        currentStep--;
+
+        updateStep();
+
+      }
+
+    }
+
+
+    /* =========================================
+       UPDATE STEP
+    ========================================= */
+
+    function updateStep() {
+
+      const steps = document.querySelectorAll(".step");
+
+      steps.forEach(function(step) {
+
+        step.classList.remove("active");
+
+      });
+
+
+      const activeStep = document.getElementById(
+        "step" + currentStep
+      );
+
+      if (activeStep) {
+
+        activeStep.classList.add("active");
+
+      }
+
+
+      for (let i = 1; i <= 4; i++) {
+
+        const dot = document.getElementById(
+          "progress" + i
+        );
+
+        if (i <= currentStep) {
+
+          dot.classList.add("active");
+
+        } else {
+
+          dot.classList.remove("active");
+
+        }
+
+      }
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =========================================
+       SUMMARY
+    ========================================= */
+
+    function updateSummary() {
+
+      const year = document
+        .getElementById("year")
+        .value
+        .trim();
+
+      const make = document
+        .getElementById("make")
+        .value
+        .trim();
+
+      const model = document
+        .getElementById("model")
+        .value
+        .trim();
+
+
+      const vehicle =
+        year + " " + make + " " + model;
+
+
+      const checkboxes = document.querySelectorAll(
+        '.check-option input[type="checkbox"]:checked'
+      );
+
+
+      const needs = [];
+
+
+      checkboxes.forEach(function(box) {
+
+        needs.push(box.value);
+
+      });
+
+
+      const date = document
+        .getElementById("preferredDate")
+        .value;
+
+
+      let formattedDate = "—";
+
+
+      if (date) {
+
+        const dateObject = new Date(date + "T00:00:00");
+
+        formattedDate =
+          dateObject.toLocaleDateString(
+            "en-US",
+            {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+              year: "numeric"
+            }
+          );
+
+      }
+
+
+      let contactText = "—";
+
+
+      if (selectedContact === "text") {
+
+        contactText = "Text me";
+
+      }
+
+
+      if (selectedContact === "call") {
+
+        if (callAnswer === "yes") {
+
+          contactText =
+            "Call me — open to a call in 10–20 min";
+
+        } else {
+
+          contactText =
+            "Call me";
+
+        }
+
+      }
+
+
+      document.getElementById(
+        "summaryService"
+      ).textContent =
+        selectedService +
+        (
+          selectedPrice && selectedPrice !== "0"
+            ? " — $" + selectedPrice
+            : ""
+        );
+
+
+      document.getElementById(
+        "summaryVehicle"
+      ).textContent =
+        vehicle;
+
+
+      document.getElementById(
+        "summaryNeeds"
+      ).textContent =
+        needs.length
+          ? needs.join(", ")
+          : "No specific concerns";
+
+
+      document.getElementById(
+        "summaryDate"
+      ).textContent =
+        formattedDate;
+
+
+      document.getElementById(
+        "summaryContact"
+      ).textContent =
+        contactText;
+
+    }
+
+
+    /* =========================================
+       SEND BOOKING
+    ========================================= */
+
+    function sendBooking() {
+
+      const name = document
+        .getElementById("customerName")
+        .value
+        .trim();
+
+      const phone = document
+        .getElementById("customerPhone")
+        .value
+        .trim();
+
+
+      if (!name || !phone) {
+
+        showError(4);
+        return;
+
+      }
+
+
+      updateSummary();
+
+
+      const year = document
+        .getElementById("year")
+        .value
+        .trim();
+
+      const make = document
+        .getElementById("make")
+        .value
+        .trim();
+
+      const model = document
+        .getElementById("model")
+        .value
+        .trim();
+
+
+      const vehicle =
+        year + " " + make + " " + model;
+
+
+      const checkboxes = document.querySelectorAll(
+        '.check-option input[type="checkbox"]:checked'
+      );
+
+
+      const needs = [];
+
+
+      checkboxes.forEach(function(box) {
+
+        needs.push(box.value);
+
+      });
+
+
+      const concern = document
+        .getElementById("concern")
+        .value
+        .trim();
+
+
+      const date = document
+        .getElementById("preferredDate")
+        .value;
+
+
+      let formattedDate = date;
+
+
+      if (date) {
+
+        const dateObject =
+          new Date(date + "T00:00:00");
+
+        formattedDate =
+          dateObject.toLocaleDateString(
+            "en-US",
+            {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+              year: "numeric"
+            }
+          );
+
+      }
+
+
+      let contactMethod = "";
+
+
+      if (selectedContact === "text") {
+
+        contactMethod = "Text me";
+
+      } else if (selectedContact === "call") {
+
+        contactMethod =
+          callAnswer === "yes"
+            ? "Call me — open to a call in 10–20 minutes"
+            : "Call me";
+
+      }
+
+
+      let message =
+        "NEW BOOKING REQUEST — AGNOLETTI DETAILING\n\n" +
+
+        "Name: " + name + "\n" +
+
+        "Phone: " + phone + "\n\n" +
+
+        "Service: " + selectedService;
+
+
+      if (selectedPrice && selectedPrice !== "0") {
+
+        message +=
+          " ($" + selectedPrice + ")";
+
+      }
+
+
+      message +=
+        "\n\n" +
+
+        "Vehicle: " + vehicle + "\n" +
+
+        "Needs: " +
+        (
+          needs.length
+            ? needs.join(", ")
+            : "No specific concerns"
+        ) +
+
+        "\n\n" +
+
+        "Additional concern: " +
+        (
+          concern
+            ? concern
+            : "None"
+        ) +
+
+        "\n\n" +
+
+        "Preferred day: " +
+        formattedDate +
+
+        "\n" +
+
+        "Contact preference: " +
+        contactMethod;
+
+
+      const smsURL =
+        "sms:" +
+        BUSINESS_PHONE +
+        "?body=" +
+        encodeURIComponent(message);
+
+
+      document
+        .getElementById("step4")
+        .classList.remove("active");
+
+
+      document
+        .getElementById("success")
+        .classList.add("active");
+
+
+      setTimeout(function() {
+
+        window.location.href = smsURL;
+
+      }, 400);
+
+    }
+
+
+    /* =========================================
+       ERROR HELPERS
+    ========================================= */
+
+    function showError(number) {
+
+      const error =
+        document.getElementById(
+          "error" + number
+        );
+
+      if (error) {
+
+        error.classList.add("show");
+
+      }
+
+    }
+
+
+    function hideError(number) {
+
+      const error =
+        document.getElementById(
+          "error" + number
+        );
+
+      if (error) {
+
+        error.classList.remove("show");
+
+      }
+
+    }
+
+
+    /* =========================================
+       DATE — DON'T ALLOW PAST DATES
+    ========================================= */
+
+    function setMinimumDate() {
+
+      const dateInput =
+        document.getElementById(
+          "preferredDate"
+        );
+
+
+      const today =
+        new Date();
+
+
+      const year =
+        today.getFullYear();
+
+
+      const month =
+        String(
+          today.getMonth() + 1
+        ).padStart(2, "0");
+
+
+      const day =
+        String(
+          today.getDate()
+        ).padStart(2, "0");
+
+
+      dateInput.min =
+        year + "-" + month + "-" + day;
+
+    }
+
+
+    /* =========================================
+       START
+    ========================================= */
+
+    setMinimumDate();
+
+    updateStep();
+
+  </script>
+
+</body>
+</html>
